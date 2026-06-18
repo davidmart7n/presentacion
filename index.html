@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentación Zeta Makers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050910;
+      --bg-2: #08111f;
+      --surface: rgba(15, 23, 42, 0.72);
+      --surface-strong: rgba(12, 20, 33, 0.94);
+      --line: rgba(92, 126, 164, 0.22);
+      --text: #f8fafc;
+      --muted: rgba(226, 232, 240, 0.74);
+      --muted-soft: rgba(203, 213, 225, 0.54);
+      --accent: #22d3ee;
+      --accent-2: #1fb6ff;
+      --success: #67e8f9;
+      --shadow: 0 22px 80px rgba(0, 0, 0, 0.45);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --slide-gap: 30vh;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 32%),
+        radial-gradient(circle at 80% 80%, rgba(31, 182, 255, 0.12), transparent 26%),
+        linear-gradient(180deg, #050910 0%, #060c16 45%, #04070d 100%);
+    }
+
+    .brand-mark {
+      position: fixed;
+      top: 1.4rem;
+      left: 1.4rem;
+      z-index: 40;
+      width: 4.8rem;
+      height: 4.8rem;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(14px);
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: -0.06em;
+    }
+
+    .presentation {
+      height: 100vh;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      scrollbar-width: none;
+    }
+
+    .presentation::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      position: relative;
+      min-height: 100vh;
+      margin-bottom: var(--slide-gap);
+      padding: 6.5rem 5rem 4.5rem;
+      display: grid;
+      place-items: center;
+      scroll-snap-align: start;
+      scroll-snap-stop: normal;
+      isolation: isolate;
+    }
+
+    .slide:last-child {
+      margin-bottom: 0;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(34, 211, 238, 0.08), transparent 20%),
+        linear-gradient(180deg, rgba(5, 9, 16, 0.14), rgba(5, 9, 16, 0.5));
+      z-index: -2;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 7% 10%;
+      border-radius: 38px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow: inset 0 0 80px rgba(34, 211, 238, 0.03);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .shell {
+      width: min(1200px, 100%);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background:
+        linear-gradient(180deg, rgba(11, 18, 32, 0.92), rgba(7, 11, 19, 0.96));
+      box-shadow: var(--shadow);
+      padding: 2.6rem;
+      transform: translateY(18px) scale(0.985);
+      opacity: 0.48;
+      transition: transform 0.7s ease, opacity 0.7s ease, border-color 0.7s ease;
+    }
+
+    .slide.is-active .shell {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      border-color: rgba(34, 211, 238, 0.12);
+    }
+
+    .hero-shell {
+      min-height: min(72vh, 760px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      width: 34rem;
+      height: 34rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.12), transparent 62%);
+      filter: blur(18px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1.25rem;
+      max-width: 880px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 2.2rem;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.55), transparent);
+    }
+
+    .hero-title,
+    .section-title {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      letter-spacing: -0.05em;
+      line-height: 0.95;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+
+    .hero-title {
+      font-size: clamp(4rem, 10vw, 6.4rem);
+    }
+
+    .section-title {
+      font-size: clamp(2.7rem, 6vw, 4.4rem);
+    }
+
+    .accent {
+      background: linear-gradient(90deg, #22d3ee 0%, #26c2ff 45%, #1d9fff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      margin: 0 auto;
+      max-width: 860px;
+      color: var(--muted);
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      line-height: 1.45;
+      text-wrap: balance;
+    }
+
+    .chip-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-top: 0.6rem;
+    }
+
+    .chip {
+      padding: 0.8rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      font-size: 0.95rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .section-shell {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .section-head {
+      display: grid;
+      gap: 0.9rem;
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 1.15rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      position: relative;
+      min-height: 100%;
+      padding: 1.8rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background:
+        linear-gradient(180deg, rgba(16, 24, 39, 0.9), rgba(11, 17, 28, 0.95));
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+    }
+
+    .icon {
+      width: 4.1rem;
+      height: 4.1rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      color: var(--accent);
+      border: 1px solid rgba(34, 211, 238, 0.12);
+      background: rgba(9, 22, 37, 0.9);
+      box-shadow: inset 0 0 24px rgba(34, 211, 238, 0.08);
+      margin-bottom: 1.2rem;
+    }
+
+    .icon svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      display: block;
+    }
+
+    .card-title {
+      margin: 0 0 0.7rem;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 1.85rem;
+      font-weight: 600;
+      letter-spacing: -0.045em;
+    }
+
+    .card-text {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 1.03rem;
+    }
+
+    .plan-card {
+      padding: 1.4rem 1.4rem 1.55rem;
+    }
+
+    .plan-name {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+    }
+
+    .divider {
+      height: 1px;
+      margin: 1rem 0 1.15rem;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+    }
+
+    .list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 1.5rem;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 1rem;
+    }
+
+    .list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .list li.tier-intro {
+      padding-left: 1.85rem;
+    }
+
+    .list li.tier-intro::before {
+      content: "✓";
+      display: grid;
+      place-items: center;
+      width: 1.2rem;
+      height: 1.2rem;
+      top: 0.1rem;
+      border-radius: 50%;
+      font-size: 0.62rem;
+      line-height: 1;
+      color: #041018;
+      font-weight: 800;
+      background: linear-gradient(145deg, #67e8f9 0%, #22d3ee 45%, #1d9fff 100%);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow:
+        0 0 14px rgba(34, 211, 238, 0.65),
+        0 0 4px rgba(103, 232, 249, 0.9),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+
+    .list li.pro-feature strong {
+      background: linear-gradient(90deg, #22d3ee 0%, #26c2ff 45%, #1d9fff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .list strong {
+      color: var(--text);
+    }
+
+    .pricing-head {
+      display: flex;
+      justify-content: center;
+      margin-top: -0.3rem;
+    }
+
+    .pricing-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 211, 238, 0.15);
+      background: rgba(8, 26, 41, 0.72);
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .pricing-pill strong {
+      color: var(--accent);
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .price {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.35rem;
+      margin-top: 0.7rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .amount {
+      font-family: Inter, system-ui, sans-serif;
+      font-size: clamp(2.9rem, 5vw, 4rem);
+      line-height: 0.92;
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      color: var(--accent);
+    }
+
+    .period {
+      color: var(--muted-soft);
+      font-size: 1.5rem;
+      line-height: 1.1;
+      padding-bottom: 0.32rem;
+    }
+
+    .recommended {
+      border-color: rgba(34, 211, 238, 0.4);
+      box-shadow:
+        0 0 0 1px rgba(34, 211, 238, 0.15),
+        0 18px 48px rgba(0, 0, 0, 0.32),
+        0 0 28px rgba(34, 211, 238, 0.18);
+    }
+
+    .recommended::after {
+      content: "RECOMENDADO";
+      position: absolute;
+      top: 0.95rem;
+      right: 1rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22d3ee, #1d9fff);
+      color: #f8fafc;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .hud {
+      position: fixed;
+      top: 1.4rem;
+      right: 1.4rem;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 9, 16, 0.76);
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(16px);
+    }
+
+    .hud-copy {
+      display: grid;
+      gap: 0.16rem;
+    }
+
+    .hud-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hud-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .hud-count {
+      min-width: 3.6rem;
+      text-align: center;
+      padding: 0.55rem 0.8rem;
+      border-radius: 14px;
+      font-weight: 800;
+      color: var(--accent);
+      background: rgba(34, 211, 238, 0.08);
+    }
+
+    .dots {
+      position: fixed;
+      top: 50%;
+      right: 1.5rem;
+      transform: translateY(-50%);
+      z-index: 40;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .dot {
+      width: 0.95rem;
+      height: 0.95rem;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(226, 232, 240, 0.18);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .dot:hover,
+    .dot:focus-visible {
+      outline: none;
+      transform: scale(1.12);
+      background: rgba(226, 232, 240, 0.34);
+    }
+
+    .dot.is-active {
+      transform: scale(1.18);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.42);
+    }
+
+    .controls {
+      position: fixed;
+      left: 1.4rem;
+      bottom: 1.4rem;
+      z-index: 40;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .nav-btn {
+      width: 3rem;
+      height: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      background: rgba(5, 9, 16, 0.75);
+      color: var(--text);
+      font-size: 1rem;
+      cursor: pointer;
+      backdrop-filter: blur(14px);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-btn:hover,
+    .nav-btn:focus-visible {
+      outline: none;
+      transform: translateY(-2px);
+      border-color: rgba(34, 211, 238, 0.28);
+      background: rgba(9, 15, 25, 0.95);
+    }
+
+    .helper,
+    .scroll-clue {
+      position: fixed;
+      z-index: 40;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 9, 16, 0.72);
+      color: var(--muted);
+      backdrop-filter: blur(12px);
+    }
+
+    .helper {
+      left: 50%;
+      bottom: 1.6rem;
+      transform: translateX(-50%);
+      padding: 0.72rem 1rem;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .helper.is-hidden {
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px);
+      pointer-events: none;
+    }
+
+    .scroll-clue {
+      right: 1.35rem;
+      bottom: 1.45rem;
+      padding: 0.55rem 0.82rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      z-index: 45;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.45);
+      transition: width 0.3s ease;
+    }
+
+    @media (max-width: 1100px) {
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .shell {
+        padding: 1.5rem;
+      }
+
+      .slide {
+        padding-inline: 1.2rem;
+      }
+
+      .recommended::after {
+        position: static;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media (max-width: 780px) {
+      body {
+        overflow: auto;
+      }
+
+      .slide {
+        padding: 6rem 1rem 5rem;
+      }
+
+      .slide::after {
+        inset: 5% 3%;
+      }
+
+      .brand-mark {
+        width: 3.9rem;
+        height: 3.9rem;
+        font-size: 1.7rem;
+        top: 1rem;
+        left: 1rem;
+      }
+
+      .hud {
+        left: 1rem;
+        right: 1rem;
+        top: 1rem;
+        justify-content: space-between;
+      }
+
+      .dots {
+        right: 0.8rem;
+        gap: 0.55rem;
+      }
+
+      .controls {
+        left: 1rem;
+        bottom: 1rem;
+      }
+
+      .scroll-clue {
+        display: none;
+      }
+
+      .helper {
+        left: 1rem;
+        right: 1rem;
+        bottom: 4.8rem;
+        transform: none;
+        text-align: center;
+      }
+
+      .helper.is-hidden {
+        transform: translateY(10px);
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 15vw, 4.6rem);
+      }
+    }
+
+    /* —— Founder Slide —— */
+    .founder-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: 2.4rem;
+      align-items: center;
+    }
+
+    .founder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 0.7rem;
+      position: relative;
+    }
+
+    .founder-grid-item {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .founder-grid-item:hover {
+      border-color: rgba(34, 211, 238, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 18px rgba(34, 211, 238, 0.1);
+      transform: translateY(-2px) scale(1.02);
+      z-index: 2;
+    }
+
+    .founder-grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .founder-grid-item:hover img {
+      transform: scale(1.06);
+    }
+
+    
+
+    .founder-content {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .founder-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .founder-eyebrow::before {
+      content: "";
+      width: 2.2rem;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.55), transparent);
+    }
+
+    .founder-title {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: clamp(2.7rem, 6vw, 4.4rem);
+      letter-spacing: -0.05em;
+      line-height: 0.95;
+      font-weight: 700;
+    }
+
+    .founder-subtitle {
+      margin: -0.2rem 0 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: -0.02em;
+    }
+
+    .founder-bio {
+      margin: 0;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+
+    .founder-passions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 0.4rem;
+    }
+
+    .passion-card {
+      padding: 1.2rem 1rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: linear-gradient(180deg, rgba(16, 24, 39, 0.9), rgba(11, 17, 28, 0.95));
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .passion-card:hover {
+      border-color: rgba(34, 211, 238, 0.2);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3), 0 0 18px rgba(34, 211, 238, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .passion-icon {
+      width: 3.4rem;
+      height: 3.4rem;
+      margin: 0 auto 0.8rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      color: var(--accent);
+      border: 1px solid rgba(34, 211, 238, 0.12);
+      background: rgba(9, 22, 37, 0.9);
+      box-shadow: inset 0 0 18px rgba(34, 211, 238, 0.08);
+    }
+
+    .passion-icon svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: block;
+    }
+
+    .passion-label {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .passion-text {
+      margin: 0.35rem 0 0;
+      color: var(--muted-soft);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 1100px) {
+      .founder-shell {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .founder-grid {
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      .founder-passions {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 780px) {
+      .founder-grid {
+        max-width: 280px;
+        gap: 0.5rem;
+      }
+
+      
+
+      .founder-passions {
+        grid-template-columns: 1fr;
+      }
+
+      .passion-card {
+        text-align: left;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        gap: 0 0.8rem;
+        align-items: center;
+        padding: 1rem 1.1rem;
+      }
+
+      .passion-icon {
+        margin: 0;
+        grid-row: 1 / 3;
+      }
+
+      .passion-label {
+        grid-column: 2;
+        font-size: 0.95rem;
+      }
+
+      .passion-text {
+        grid-column: 2;
+      }
+    }
+
+    /* —— Slide satírica: agencia tradicional —— */
+    .slide-agency {
+      --agency-gold: #fbbf24;
+      --agency-red: #fb7185;
+      --agency-purple: #c084fc;
+      --agency-hot: #f97316;
+    }
+
+    .slide-agency::before {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(251, 191, 36, 0.14), transparent 28%),
+        radial-gradient(circle at 85% 85%, rgba(249, 115, 22, 0.12), transparent 24%),
+        linear-gradient(180deg, rgba(20, 8, 8, 0.2), rgba(5, 9, 16, 0.55));
+    }
+
+    .slide-agency::after {
+      border-color: rgba(251, 191, 36, 0.12);
+      box-shadow: inset 0 0 100px rgba(249, 115, 22, 0.04);
+    }
+
+    .agency-shell {
+      border-color: rgba(251, 191, 36, 0.22);
+      background:
+        linear-gradient(165deg, rgba(28, 18, 12, 0.96) 0%, rgba(12, 10, 18, 0.98) 55%, rgba(8, 12, 22, 0.98) 100%);
+      box-shadow:
+        0 28px 90px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(251, 191, 36, 0.06);
+    }
+
+    .slide-agency.is-active .agency-shell {
+      border-color: rgba(251, 191, 36, 0.35);
+    }
+
+    .agency-banner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem 0.75rem;
+      margin-bottom: 1.25rem;
+      padding: 0.65rem 1rem;
+      border-radius: 14px;
+      border: 1px dashed rgba(251, 113, 133, 0.45);
+      background: linear-gradient(90deg, rgba(251, 113, 133, 0.12), rgba(251, 191, 36, 0.1), rgba(192, 132, 252, 0.1));
+      animation: agency-pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes agency-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.82; }
+    }
+
+    .agency-banner span {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--agency-gold);
+    }
+
+    .agency-banner .blink {
+      color: var(--agency-red);
+      animation: agency-blink 1s step-end infinite;
+    }
+
+    @keyframes agency-blink {
+      50% { opacity: 0.35; }
+    }
+
+    .agency-title {
+      margin: 0;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .agency-title .strike-real {
+      display: block;
+      font-size: 0.42em;
+      font-weight: 500;
+      color: var(--muted-soft);
+      text-decoration: line-through;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.35rem;
+    }
+
+    .agency-title .hot {
+      background: linear-gradient(90deg, #fbbf24, #f97316, #fb7185);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .agency-sub {
+      margin: 0.75rem auto 0;
+      max-width: 920px;
+      text-align: center;
+      color: rgba(226, 232, 240, 0.62);
+      font-size: 1rem;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .agency-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      max-width: 920px;
+      margin: 1.5rem auto 0;
+    }
+
+    .agency-card {
+      position: relative;
+      padding: 1.25rem 1.15rem 1.35rem;
+      border-radius: 20px;
+      border: 2px solid rgba(251, 191, 36, 0.2);
+      background:
+        linear-gradient(180deg, rgba(35, 22, 14, 0.95), rgba(18, 14, 22, 0.98));
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+    }
+
+    .agency-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--agency-gold), var(--agency-hot), var(--agency-red));
+    }
+
+    .agency-card.is-popular {
+      border-color: rgba(251, 113, 133, 0.55);
+      transform: scale(1.03);
+      z-index: 1;
+      box-shadow:
+        0 0 0 1px rgba(251, 113, 133, 0.25),
+        0 20px 48px rgba(249, 115, 22, 0.15);
+    }
+
+    .agency-card.is-popular::after {
+      content: "MÁS VENDIDO";
+      position: absolute;
+      top: 0.75rem;
+      right: 0.65rem;
+      padding: 0.35rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: #1a0a0a;
+      background: linear-gradient(90deg, #fbbf24, #f97316);
+      animation: agency-wiggle 3s ease-in-out infinite;
+    }
+
+    @keyframes agency-wiggle {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+
+    .agency-plan-name {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--agency-gold);
+    }
+
+    .agency-from {
+      margin: 0.2rem 0 0;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted-soft);
+    }
+
+    .agency-price-wrap {
+      margin: 0.65rem 0 0.5rem;
+    }
+
+    .agency-price {
+      font-size: clamp(2.1rem, 3.5vw, 2.75rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: var(--agency-red);
+      text-shadow: 0 0 24px rgba(251, 113, 133, 0.35);
+    }
+
+    .agency-price small {
+      font-size: 0.45em;
+      font-weight: 600;
+      color: var(--muted-soft);
+    }
+
+    .agency-price-note {
+      margin: 0.25rem 0 0;
+      font-size: 0.72rem;
+      color: rgba(251, 113, 133, 0.85);
+      font-weight: 600;
+    }
+
+    .agency-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .agency-tag {
+      padding: 0.28rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid;
+    }
+
+    .agency-tag--ia {
+      color: #e9d5ff;
+      background: rgba(192, 132, 252, 0.2);
+      border-color: rgba(192, 132, 252, 0.45);
+    }
+
+    .agency-tag--copy {
+      color: #fde68a;
+      background: rgba(251, 191, 36, 0.15);
+      border-color: rgba(251, 191, 36, 0.4);
+    }
+
+    .agency-tag--design {
+      color: #fecdd3;
+      background: rgba(251, 113, 133, 0.15);
+      border-color: rgba(251, 113, 133, 0.4);
+    }
+
+    .agency-tag--extra {
+      color: #fed7aa;
+      background: rgba(249, 115, 22, 0.15);
+      border-color: rgba(249, 115, 22, 0.4);
+    }
+
+    .agency-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .agency-list li {
+      position: relative;
+      padding-left: 1.15rem;
+      font-size: 0.82rem;
+      line-height: 1.35;
+      color: rgba(226, 232, 240, 0.7);
+    }
+
+    .agency-list li::before {
+      content: "+";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--agency-hot);
+      font-weight: 900;
+      font-size: 0.95rem;
+    }
+
+    .agency-list li.is-upsell {
+      color: rgba(251, 191, 36, 0.95);
+      font-weight: 600;
+    }
+
+    .agency-list li.is-upsell::before {
+      content: "€";
+      color: var(--agency-red);
+    }
+
+    .agency-list li.is-fine {
+      font-size: 0.72rem;
+      color: rgba(203, 213, 225, 0.45);
+      font-style: italic;
+    }
+
+    .agency-list li.is-fine::before {
+      content: "·";
+      color: var(--muted-soft);
+    }
+
+    .agency-foot {
+      margin-top: 1.35rem;
+      padding: 0.85rem 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.25);
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted-soft);
+      line-height: 1.45;
+    }
+
+    .agency-foot strong {
+      color: var(--agency-gold);
+    }
+
+    @media (max-width: 1100px) {
+      .agency-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .agency-card.is-popular {
+        transform: none;
+      }
+
+      .agency-card.is-popular::after {
+        position: static;
+        display: inline-block;
+        margin-bottom: 0.65rem;
+      }
+    }
+
+    /* —— Zeta App / iPhone Mockup Slide —— */
+    .app-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .iphone-mockup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .iphone-frame {
+      position: relative;
+      width: 210px;
+      aspect-ratio: 9 / 19;
+      border-radius: 34px;
+      border: 3px solid #2a2d36;
+      background: #0a0a0c;
+      box-shadow:
+        0 0 0 2px #1a1c22,
+        0 0 0 4px #0d0e12,
+        0 22px 55px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(34, 211, 238, 0.06),
+        inset 0 0 2px rgba(255, 255, 255, 0.04);
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .iphone-mockup:hover .iphone-frame {
+      transform: translateY(-6px);
+      box-shadow:
+        0 0 0 2px #1a1c22,
+        0 0 0 4px #0d0e12,
+        0 28px 65px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(34, 211, 238, 0.14),
+        inset 0 0 2px rgba(255, 255, 255, 0.04);
+    }
+
+    .iphone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 84px;
+      height: 22px;
+      background: #0a0a0c;
+      border-radius: 0 0 14px 14px;
+      z-index: 2;
+    }
+
+    .iphone-screen {
+      position: absolute;
+      inset: 4px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #050910;
+    }
+
+    .iphone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .iphone-home-bar {
+      position: absolute;
+      bottom: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 76px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      z-index: 2;
+    }
+
+    .iphone-label {
+      font-size: 0.8rem;
+      color: var(--muted-soft);
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      max-width: 170px;
+    }
+
+    @media (max-width: 1100px) {
+      .iphone-frame {
+        width: 170px;
+        border-radius: 28px;
+      }
+
+      .iphone-screen {
+        border-radius: 24px;
+      }
+
+      .iphone-notch {
+        width: 66px;
+        height: 18px;
+        border-radius: 0 0 11px 11px;
+      }
+
+      .app-showcase {
+        gap: 1.2rem;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .iphone-frame {
+        width: 140px;
+        border-radius: 24px;
+        border-width: 2px;
+      }
+
+      .iphone-screen {
+        border-radius: 20px;
+        inset: 3px;
+      }
+
+      .iphone-notch {
+        width: 54px;
+        height: 15px;
+        border-radius: 0 0 9px 9px;
+      }
+
+      .iphone-home-bar {
+        width: 54px;
+        height: 3px;
+        bottom: 5px;
+      }
+
+      .app-showcase {
+        gap: 0.8rem;
+      }
+
+      .iphone-label {
+        font-size: 0.7rem;
+        max-width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="brand-mark" aria-hidden="true">Z</div>
+
+  <div class="hud" aria-live="polite">
+    <div class="hud-copy">
+      <span class="hud-label">Presentación interactiva</span>
+      <span class="hud-title" id="hudTitle">Quién somos</span>
+    </div>
+    <div class="hud-count" id="hudCount">01 / 05</div>
+  </div>
+
+  <nav class="dots" id="dots" aria-label="Navegación de slides"></nav>
+
+  <div class="controls" aria-label="Controles de navegación">
+    <button class="nav-btn" id="prevBtn" type="button" aria-label="Slide anterior">↑</button>
+    <button class="nav-btn" id="nextBtn" type="button" aria-label="Slide siguiente">↓</button>
+  </div>
+
+  <div class="helper" id="helper">Usa la rueda, las flechas o los puntos laterales para navegar</div>
+  <div class="scroll-clue" aria-hidden="true">Usa ↑ ↓ o scroll</div>
+
+  <main class="presentation" id="presentation">
+    <section class="slide is-active" data-title="Qué es Zeta Voice">
+      <div class="shell hero-shell">
+        <div class="hero-content">
+          <div class="eyebrow">Zeta Makers</div>
+          <h1 class="hero-title">Qué es<br><span class="accent">Zeta Voice</span></h1>
+          <p class="lead">
+            Un sistema de contenido asistido por IA para convertir el conocimiento interno de una marca
+            en una presencia clara, constante y comercialmente útil.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Quién eres">
+      <div class="shell hero-shell">
+        <div class="hero-content">
+          <div class="eyebrow">Perfil ideal</div>
+          <h2 class="hero-title">Quién eres</h2>
+          <p class="lead">
+            Empresas B2B, fundadores, CEOs y equipos comerciales que necesitan presencia en LinkedIn
+            sin depender de más fricción operativa.
+          </p>
+          <div class="chip-row">
+            <span class="chip">CEO y fundadores</span>
+            <span class="chip">Equipos de ventas B2B</span>
+            <span class="chip">Marcas con expertise técnico</span>
+            <span class="chip">Negocios que quieren escalar autoridad</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Zeta Voice">
+      <div class="shell section-shell">
+        <header class="section-head">
+          <h2 class="section-title"><span class="accent">Zeta Voice</span></h2>
+          <p class="lead">
+            El motor de IA que escala tu autoridad en LinkedIn <strong>sin perder tu ADN corporativo</strong>.
+          </p>
+        </header>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5a3 3 0 1 0-5.8 1.2 4 4 0 0 0-2.4 5.2 4 4 0 0 0 .5 6.3A4 4 0 1 0 12 20Z"/>
+                <path d="M12 5a3 3 0 1 1 5.8 1.2 4 4 0 0 1 2.4 5.2 4 4 0 0 1-.5 6.3A4 4 0 1 1 12 20Z"/>
+                <path d="M12 5v15"/>
+              </svg>
+            </div>
+            <h3 class="card-title">The Brand Brain</h3>
+            <p class="card-text">
+              Digitalizamos tu tono de voz, valores y reglas de negocio. Una memoria institucional
+              que asegura consistencia total.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2 4 14h7l-1 8 10-14h-7l0-6Z" fill="currentColor" fill-opacity="0.12"/>
+                <path d="M13 2 4 14h7l-1 8 10-14h-7l0-6Z"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Cero Fricción</h3>
+            <p class="card-text">
+              Generación masiva de copys e imágenes listas para publicar. Rapidez extrema,
+              flujo de trabajo ágil y sin cuellos de botella.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                <polyline points="16 7 22 7 22 13"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Autoridad y Ventas</h3>
+            <p class="card-text">
+              Multiplica tu alcance y tu impacto comercial B2B con una inversión de tiempo
+              drásticamente menor para ti.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Zeta App · Onboarding">
+      <div class="shell section-shell">
+        <header class="section-head">
+          <h2 class="section-title"><span class="accent">Zeta App</span> · Onboarding</h2>
+          <p class="lead">
+            Tu identidad de marca en el bolsillo. Accede a tu Brand Book y configura
+            tu presencia desde el primer día con una bienvenida guiada.
+          </p>
+        </header>
+
+        <div class="app-showcase">
+          <div class="iphone-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-notch"></div>
+              <div class="iphone-screen">
+                <img src="assets/onboarding-1.png" alt="Onboarding paso 1" loading="lazy">
+              </div>
+              <div class="iphone-home-bar"></div>
+            </div>
+            <span class="iphone-label">Onboarding</span>
+          </div>
+
+          <div class="iphone-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-notch"></div>
+              <div class="iphone-screen">
+                <img src="assets/onboarding-2.png" alt="Onboarding paso 2" loading="lazy">
+              </div>
+              <div class="iphone-home-bar"></div>
+            </div>
+            <span class="iphone-label">Onboarding</span>
+          </div>
+
+          <div class="iphone-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-notch"></div>
+              <div class="iphone-screen">
+                <img src="assets/brandbook.png" alt="Brand Book de la marca" loading="lazy">
+              </div>
+              <div class="iphone-home-bar"></div>
+            </div>
+            <span class="iphone-label">Brand Book</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Zeta App · Revisión">
+      <div class="shell section-shell">
+        <header class="section-head">
+          <h2 class="section-title"><span class="accent">Zeta App</span> · Revisión</h2>
+          <p class="lead">
+            Flujo colaborativo de revisión: aprueba contenido, solicita cambios
+            y asegura que cada post represente fielmente tu marca.
+          </p>
+        </header>
+
+        <div class="app-showcase">
+          <div class="iphone-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-notch"></div>
+              <div class="iphone-screen">
+                <img src="assets/revision.png" alt="Revisión de contenido" loading="lazy">
+              </div>
+              <div class="iphone-home-bar"></div>
+            </div>
+            <span class="iphone-label">Revisión</span>
+          </div>
+
+          <div class="iphone-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-notch"></div>
+              <div class="iphone-screen">
+                <img src="assets/solicitar-cambios.png" alt="Solicitar cambios en un post" loading="lazy">
+              </div>
+              <div class="iphone-home-bar"></div>
+            </div>
+            <span class="iphone-label">Solicitar cambios</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Zeta App · Creación y Edición">
+      <div class="shell section-shell">
+        <header class="section-head">
+          <h2 class="section-title"><span class="accent">Zeta App</span> · Creación y Edición</h2>
+          <p class="lead">
+            Como extra opcional: propón posts, edita copys y valida diseños
+            directamente desde la app con un flujo rápido y visual.
+          </p>
+        </header>
+
+        <div class="app-showcase">
+          <div class="iphone-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-notch"></div>
+              <div class="iphone-screen">
+                <img src="assets/crear-proponer-post.png" alt="Crear y proponer un post" loading="lazy">
+              </div>
+              <div class="iphone-home-bar"></div>
+            </div>
+            <span class="iphone-label">Crear contenido</span>
+          </div>
+
+          <div class="iphone-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-notch"></div>
+              <div class="iphone-screen">
+                <img src="assets/validacion.png" alt="Validación de contenido" loading="lazy">
+              </div>
+              <div class="iphone-home-bar"></div>
+            </div>
+            <span class="iphone-label">Validación</span>
+          </div>
+
+          <div class="iphone-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-notch"></div>
+              <div class="iphone-screen">
+                <img src="assets/editar-copy.png" alt="Editar copy del post" loading="lazy">
+              </div>
+              <div class="iphone-home-bar"></div>
+            </div>
+            <span class="iphone-label">Edición</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Fundador">
+      <div class="shell founder-shell">
+        <div class="founder-grid">
+          <div class="founder-grid-item">
+            <img src="assets/david/foto-david.jpg" alt="David, Fundador de Zeta Makers" loading="lazy">
+          </div>
+          <div class="founder-grid-item">
+            <img src="assets/david/grabando-corporativo-vertical.png" alt="David grabando contenido corporativo" loading="lazy">
+          </div>
+          <div class="founder-grid-item">
+            <img src="assets/david/programando-norrsken.jpg" alt="David programando en Norrsken" loading="lazy">
+          </div>
+          <div class="founder-grid-item">
+            <img src="assets/david/grabando-horizontal.png" alt="David creando contenido" loading="lazy">
+          </div>
+          <div class="founder-grid-item">
+            <img src="assets/david/programando-terraza.jpg" alt="David programando en terraza" loading="lazy">
+          </div>
+          <div class="founder-grid-item">
+            <img src="assets/david/programando-cafeteria.jpg" alt="David programando en cafetería" loading="lazy">
+          </div>
+          
+        </div>
+
+        <div class="founder-content">
+          <div class="founder-eyebrow">Fundador</div>
+          <h2 class="founder-title"><span class="accent">Founder</span></h2>
+          <p class="founder-subtitle">David · Desarrollador Full‑Stack</p>
+          <p class="founder-bio">
+            Tras años construyendo productos digitales y creando comunidad en redes, vi cómo las empresas
+            con mejor expertise perdían autoridad online por falta de tiempo y herramientas adecuadas.
+            Zeta Voice nace de la intersección de mis tres pasiones: tech, redes sociales y empresa.
+          </p>
+          <div class="founder-passions">
+            <div class="passion-card">
+              <div class="passion-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <h3 class="passion-label">Tech</h3>
+              <p class="passion-text">Apasionado por construir productos digitales que funcionan</p>
+            </div>
+            <div class="passion-card">
+              <div class="passion-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+              </div>
+              <h3 class="passion-label">Redes Sociales</h3>
+              <p class="passion-text">Creando presencia y comunidad real en LinkedIn y más</p>
+            </div>
+            <div class="passion-card">
+              <div class="passion-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+              </div>
+              <h3 class="passion-label">Empresa</h3>
+              <p class="passion-text">Entendiendo las necesidades reales del B2B desde dentro</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Qué incluyen nuestros planes">
+      <div class="shell section-shell">
+        <header class="section-head">
+          <h2 class="section-title">Qué incluyen nuestros planes</h2>
+        </header>
+
+        <div class="grid-3">
+          <article class="card plan-card recommended">
+            <h3 class="plan-name">Referente</h3>
+            <div class="divider"></div>
+            <ul class="list">
+              <li class="pro-feature"><strong>Hasta 5 posts/semana</strong></li>
+              <li class="pro-feature"><strong>Imágenes y diseños con IA sin límite</strong></li>
+              <li class="pro-feature"><strong>Diseños de carruseles</strong></li>
+              <li><strong>Búsqueda web y trends en vivo</strong></li>
+              <li><strong>Propuestas de posts integradas</strong></li>
+              <li>The Brand Brain (Tono de voz y ADN digitalizado)</li>
+              <li>Acceso y validación total desde Zeta App</li>
+            </ul>
+          </article>
+
+          <article class="card plan-card">
+            <h3 class="plan-name">Autoridad</h3>
+            <div class="divider"></div>
+            <ul class="list">
+              <li><strong>Hasta 3 posts/semana</strong></li>
+              <li><strong>2 posts con diseños/imágenes con IA/semana</strong></li>
+              <li><strong>Búsqueda web y trends en vivo</strong></li>
+              <li><strong>Propuestas de posts integradas</strong></li>
+              <li>The Brand Brain (Tono de voz y ADN digitalizado)</li>
+              <li>Acceso y validación total desde Zeta App</li>
+            </ul>
+          </article>
+
+          <article class="card plan-card">
+            <h3 class="plan-name">Presencia</h3>
+            <div class="divider"></div>
+            <ul class="list">
+              <li><strong>1 post/semana</strong></li>
+              <li><strong>1 imagen/diseño con IA/semana</strong></li>
+              <li>Motor de generación especializado y personalizado</li>
+              <li>The Brand Brain (Tono de voz y ADN digitalizado)</li>
+              <li>Acceso y validación total desde Zeta App</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Nuestros Precios">
+      <div class="shell section-shell">
+        <header class="section-head">
+          <h2 class="section-title">Nuestros Precios</h2>
+          <div class="pricing-head">
+            <div class="pricing-pill">
+              <span>⚡ Setup &amp; Onboarding inicial:</span>
+              <strong>100€</strong>
+              <span>(Pago único)</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="grid-3">
+          <article class="card plan-card recommended">
+            <h3 class="plan-name">Referente</h3>
+            <div class="price">
+              <span class="amount">490€</span>
+              <span class="period">/mes</span>
+            </div>
+            <div class="divider"></div>
+            <ul class="list">
+              <li class="pro-feature"><strong>Hasta 5 posts/semana</strong></li>
+              <li class="pro-feature"><strong>Imágenes y diseños con IA sin límite</strong></li>
+              <li class="pro-feature"><strong>Diseños de carruseles</strong></li>
+              <li><strong>Búsqueda web y trends en vivo</strong></li>
+              <li><strong>Propuestas de posts integradas</strong></li>
+              <li>The Brand Brain (Tono de voz y ADN digitalizado)</li>
+              <li>Acceso y validación total desde Zeta App</li>
+            </ul>
+          </article>
+
+          <article class="card plan-card">
+            <h3 class="plan-name">Autoridad</h3>
+            <div class="price">
+              <span class="amount">290€</span>
+              <span class="period">/mes</span>
+            </div>
+            <div class="divider"></div>
+            <ul class="list">
+              <li><strong>Hasta 3 posts/semana</strong></li>
+              <li><strong>2 posts con diseños/imágenes con IA/semana</strong></li>
+              <li><strong>Búsqueda web y trends en vivo</strong></li>
+              <li><strong>Propuestas de posts integradas</strong></li>
+              <li>The Brand Brain (Tono de voz y ADN digitalizado)</li>
+              <li>Acceso y validación total desde Zeta App</li>
+            </ul>
+          </article>
+
+          <article class="card plan-card">
+            <h3 class="plan-name">Presencia</h3>
+            <div class="price">
+              <span class="amount">99€</span>
+              <span class="period">/mes</span>
+            </div>
+            <div class="divider"></div>
+            <ul class="list">
+              <li><strong>1 post/semana</strong></li>
+              <li><strong>1 imagen/diseño con IA/semana</strong></li>
+              <li>Motor de generación especializado y personalizado</li>
+              <li>The Brand Brain (Tono de voz y ADN digitalizado)</li>
+              <li>Acceso y validación total desde Zeta App</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const presentation = document.getElementById("presentation");
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const dotsRoot = document.getElementById("dots");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const hudTitle = document.getElementById("hudTitle");
+    const hudCount = document.getElementById("hudCount");
+    const helper = document.getElementById("helper");
+    const progressBar = document.getElementById("progressBar");
+
+    const dots = [];
+    let activeIndex = 0;
+    let isAnimating = false;
+    let helperTimer;
+
+    function formatIndex(value) {
+      return String(value).padStart(2, "0");
+    }
+
+    function updateUI(index) {
+      activeIndex = index;
+
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("is-active", slideIndex === index);
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        const active = dotIndex === index;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-current", active ? "true" : "false");
+      });
+
+      hudTitle.textContent = slides[index].dataset.title;
+      hudCount.textContent = `${formatIndex(index + 1)} / ${formatIndex(slides.length)}`;
+      progressBar.style.width = `${((index + 1) / slides.length) * 100}%`;
+    }
+
+    function scrollToSlide(index) {
+      const targetIndex = Math.max(0, Math.min(index, slides.length - 1));
+      if (targetIndex === activeIndex || isAnimating) {
+        return;
+      }
+
+      isAnimating = true;
+      slides[targetIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+      window.clearTimeout(helperTimer);
+      helper.classList.add("is-hidden");
+
+      window.setTimeout(() => {
+        isAnimating = false;
+      }, 720);
+    }
+
+    slides.forEach((slide, index) => {
+      const dot = document.createElement("button");
+      dot.className = "dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Ir al slide ${index + 1}: ${slide.dataset.title}`);
+      dot.addEventListener("click", () => scrollToSlide(index));
+      dotsRoot.appendChild(dot);
+      dots.push(dot);
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (!visible) {
+          return;
+        }
+
+        const index = slides.indexOf(visible.target);
+        if (index !== -1) {
+          updateUI(index);
+        }
+      },
+      {
+        root: presentation,
+        threshold: [0.45, 0.65, 0.8]
+      }
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+
+    window.addEventListener("keydown", (event) => {
+      if (["ArrowDown", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        scrollToSlide(activeIndex + 1);
+      }
+
+      if (["ArrowUp", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        scrollToSlide(activeIndex - 1);
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        scrollToSlide(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        scrollToSlide(slides.length - 1);
+      }
+    });
+
+    prevBtn.addEventListener("click", () => scrollToSlide(activeIndex - 1));
+    nextBtn.addEventListener("click", () => scrollToSlide(activeIndex + 1));
+
+    helperTimer = window.setTimeout(() => {
+      helper.classList.add("is-hidden");
+    }, 4500);
+
+    updateUI(0);
+  </script>
+</body>
+</html>
